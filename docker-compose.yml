@@ -1,0 +1,42 @@
+version: "3.2"
+
+services:
+
+  front:
+    image: node:18
+    environment:
+      - API_URL_LOCAL=http://localhost:4000/graphql
+      - API_URL_SERVER=http://api:1963/graphql
+    volumes:
+      - type: bind
+        source: ./packages/portfolio-front-next
+        target: /usr/src/app
+    depends_on:
+      - api
+    ports:
+      - 3000:3000
+    command: bash -c "cd /usr/src/app && npm install && npm run dev"
+
+  api:
+    image: node:18
+    volumes:
+      - type: bind
+        source: ./packages/PortfolioAPI
+        target: /usr/src/api
+    ports:
+      - 4000:1963
+    command: bash -c "cd /usr/src/api && npm install && npm run dev"
+    depends_on:
+      - mongo_db
+    environment: 
+      - MONGO_URL=mongodb://mongo_db:27017
+
+  mongo_db:
+    image: mongo:5
+    environment:
+      - MONGO_DATA_DIR=/data/db
+    volumes:
+      - ./data:/data/db
+    command: mongod --logpath=/dev/null
+    ports:
+      - 4004:27017

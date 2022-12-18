@@ -1,0 +1,9 @@
+query GetPhotos($name: String, $internalId: String) {
+  getPhotos(name: $name, internalId: $internalId) {
+    _id
+    url
+    name
+    internalId
+    date
+  }
+}

@@ -1,0 +1,7 @@
+{
+    "private": true,
+    "scripts": {
+        "installAll": "cd packages/portfolio-front-next && npm install && cd ../../packages/PortfolioAPI && npm install",
+        "codegen": "cd packages/portfolio-front-next && npm run codegen"
+    }
+}
