@@ -2,7 +2,19 @@ version: "3.2"
 
 services:
 
-  front:
+  frontfresh:
+    image: denoland/deno
+    volumes:
+      - type: bind
+        source: ./packages/portfolio-fresh
+        target: /usr/src/appfresh
+    ports:
+      - 3001:8000
+    command: bash -c "cd /usr/src/appfresh && deno task start"
+    depends_on:
+      - api
+
+  frontnext:
     image: node:18
     environment:
       - API_URL_LOCAL=http://localhost:4000/graphql

@@ -1,0 +1,9 @@
+{
+    "deno.enable": false,
+    "deno.enablePaths": [
+        "./packages/portfolio-fresh",
+    ],
+    "deno.suggest.completeFunctionCalls": true,
+    "editor.defaultFormatter": "denoland.vscode-deno",
+    "deno.unstable": true
+}
