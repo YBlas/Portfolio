@@ -1,8 +1,8 @@
 import { Head } from "$fresh/runtime.ts";
 import Counter from "../islands/Counter.tsx";
 import { Handlers, PageProps } from '$fresh/server.ts';
-
-
+import Layout from "../components/Layout.tsx";
+import ButtonRouter from "../islands/ButtonRouter.tsx";
 
 export const handler: Handlers = {
   async GET(_req, ctx) {
@@ -33,19 +33,22 @@ export const handler: Handlers = {
     }
 
     const data = await response.json();
-    
+
     return ctx.render(data);
   },
 };
 
 
 export default function Home(props: PageProps) {
+
   return (
-    <>
+    <Layout>
       <Head>
         <title>Fresh App</title>
+        <link rel="stylesheet" href="/styles/styles.css" />
       </Head>
-      {props.data.data.getPhotos.map((photo: {name: string, _id: string, url: string, internalId: string, date: string}) => {
+      <ButtonRouter link="yellow" />
+      {props.data.data.getPhotos.map((photo: { name: string, _id: string, url: string, internalId: string, date: string }) => {
         return (
           <div>
             <p>{photo.name}</p>
@@ -56,19 +59,7 @@ export default function Home(props: PageProps) {
         );
       })
       }
-      <div>
-        <img
-          src="/logo.svg"
-          width="128"
-          height="128"
-          alt="the fresh logo: a sliced lemon dripping with juice"
-        />
-        <p>
-          Welcome to `fresh`. Try updating this message in the ./routes/index.tsx
-          file, and refresh.
-        </p>
-        <Counter start={3} />
-      </div>
-    </>
+      <Counter start={3} />
+    </Layout>
   );
 }

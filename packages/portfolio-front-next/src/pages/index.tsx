@@ -1,6 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 import styled from "@emotion/styled";
 import { NextPage } from "next";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 
@@ -22,10 +23,19 @@ const IndexPage: NextPage = () => {
 
   const {data, loading, error} = useQuery(GET_ALL_PHOTOS);
 
+  const router = useRouter();
+
   return (
     <div>
       <main>
         <h1 onMouseEnter={()=>{setActive(!active)}}>Home</h1>
+        <input
+          onChange={(e)=>{
+            if(e.target.value === 'pink'){
+              router.push('/pink');
+            }
+          }}
+        />
         {loading && <p>Loading...</p>}
         {error && <p>Error: {error.message}</p>}
         {data && data.getPhotos.map((photo: any) => (
