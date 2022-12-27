@@ -4,7 +4,7 @@ import Layout from "../components/Layout.tsx";
 export default function YellowPage(props: PageProps) {
     return (
     <Layout>
-        <div className="yellow">
+        <div className="yellow" style={{backgroundColor: "#fabada"}}>
             <p>TestPage</p>
         </div>
     </Layout>

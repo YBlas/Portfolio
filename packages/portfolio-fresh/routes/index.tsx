@@ -3,6 +3,7 @@ import Counter from "../islands/Counter.tsx";
 import { Handlers, PageProps } from '$fresh/server.ts';
 import Layout from "../components/Layout.tsx";
 import ButtonRouter from "../islands/ButtonRouter.tsx";
+import ButtonRouterColor from "../islands/ButtonRouterColor.tsx";
 
 export const handler: Handlers = {
   async GET(_req, ctx) {
@@ -47,6 +48,7 @@ export default function Home(props: PageProps) {
         <title>Fresh App</title>
         <link rel="stylesheet" href="/styles/styles.css" />
       </Head>
+      <ButtonRouterColor />
       <ButtonRouter link="yellow" />
       {props.data.data.getPhotos.map((photo: { name: string, _id: string, url: string, internalId: string, date: string }) => {
         return (

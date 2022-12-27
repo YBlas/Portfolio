@@ -25,17 +25,30 @@ const IndexPage: NextPage = () => {
 
   const router = useRouter();
 
+  const [colorPage, setColorPage] = useState("");
+
   return (
     <div>
       <main>
         <h1 onMouseEnter={()=>{setActive(!active)}}>Home</h1>
         <input
+          value={colorPage}
           onChange={(e)=>{
-            if(e.target.value === 'pink'){
-              router.push('/pink');
-            }
+            setColorPage(e.target.value);
           }}
         />
+        <button
+          onClick={()=>{
+            const hexColorCodePattern = /^([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
+            if(hexColorCodePattern.test(colorPage)){
+              router.push(`/color/${colorPage}`);
+            }else{
+              alert("Not a valid color code");
+            }
+          }}
+        >
+          Go to color page
+        </button>
         {loading && <p>Loading...</p>}
         {error && <p>Error: {error.message}</p>}
         {data && data.getPhotos.map((photo: any) => (
