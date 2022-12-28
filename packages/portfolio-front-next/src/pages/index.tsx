@@ -1,12 +1,14 @@
 import styled from "@emotion/styled";
 import { NextPage } from "next";
+import { useRouter } from "next/router";
 import { useState } from "react";
-import { idText } from "typescript";
 import { useGetPhotosQuery } from "../generated/graphql";
 
 
 
 const IndexPage: NextPage = () => {
+
+  const router = useRouter();
 
   const { data } = useGetPhotosQuery({
     variables: {
@@ -48,7 +50,7 @@ const IndexPage: NextPage = () => {
                 t?.internalId === photo?.internalId
               ))
             ).map((photo, index) => (
-              <CarrouselImage url={photo!.url}>
+              <CarrouselImage onClick={()=>{router.push(photo?.internalId as string)}} url={photo!.url}>
                 <h1>
                   {photo?.internalId}
                 </h1>
