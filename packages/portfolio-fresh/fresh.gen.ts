@@ -4,24 +4,24 @@
 
 import config from "./deno.json" assert { type: "json" };
 import * as $0 from "./routes/[image].tsx";
-import * as $1 from "./routes/color/[color].tsx";
-import * as $2 from "./routes/index.tsx";
-import * as $3 from "./routes/yellow.tsx";
-import * as $$0 from "./islands/ButtonRouter.tsx";
-import * as $$1 from "./islands/ButtonRouterColor.tsx";
-import * as $$2 from "./islands/Counter.tsx";
+import * as $1 from "./routes/index.tsx";
+import * as $$0 from "./islands/BackButton.tsx";
+import * as $$1 from "./islands/ButtonRouter.tsx";
+import * as $$2 from "./islands/ButtonRouterColor.tsx";
+import * as $$3 from "./islands/Counter.tsx";
+import * as $$4 from "./islands/Image.tsx";
 
 const manifest = {
   routes: {
     "./routes/[image].tsx": $0,
-    "./routes/color/[color].tsx": $1,
-    "./routes/index.tsx": $2,
-    "./routes/yellow.tsx": $3,
+    "./routes/index.tsx": $1,
   },
   islands: {
-    "./islands/ButtonRouter.tsx": $$0,
-    "./islands/ButtonRouterColor.tsx": $$1,
-    "./islands/Counter.tsx": $$2,
+    "./islands/BackButton.tsx": $$0,
+    "./islands/ButtonRouter.tsx": $$1,
+    "./islands/ButtonRouterColor.tsx": $$2,
+    "./islands/Counter.tsx": $$3,
+    "./islands/Image.tsx": $$4,
   },
   baseUrl: import.meta.url,
   config,

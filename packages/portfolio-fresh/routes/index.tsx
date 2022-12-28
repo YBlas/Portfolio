@@ -1,9 +1,7 @@
-import { Head } from "$fresh/runtime.ts";
-import Counter from "../islands/Counter.tsx";
+// deno-lint-ignore-file no-explicit-any
 import { Handlers, PageProps } from '$fresh/server.ts';
 import Layout from "../components/Layout.tsx";
-import ButtonRouter from "../islands/ButtonRouter.tsx";
-import ButtonRouterColor from "../islands/ButtonRouterColor.tsx";
+import Image from "../islands/Image.tsx";
 
 export const handler: Handlers = {
   async GET(_req, ctx) {
@@ -42,26 +40,24 @@ export const handler: Handlers = {
 
 export default function Home(props: PageProps) {
 
+  const data = props.data.data;
+
   return (
     <Layout>
-      <Head>
-        <title>Fresh App</title>
-        <link rel="stylesheet" href="/styles/styles.css" />
-      </Head>
-      <ButtonRouterColor />
-      <ButtonRouter link="yellow" />
-      {props.data.data.getPhotos.map((photo: { name: string, _id: string, url: string, internalId: string, date: string }) => {
-        return (
-          <div>
-            <p>{photo.name}</p>
-            <img src={photo.url
-            } />
-            <p>{photo.date}</p>
-          </div>
-        );
-      })
-      }
-      <Counter start={3} />
+      <div className="LayoutPhoto">
+        <img className="title" src="name.png" />
+        <div className="Carrusel">
+          {data &&
+            data.getPhotos.filter((photo:any, index: number, self: any) =>
+              index === self.findIndex((t: any) => (
+                t?.internalId === photo?.internalId
+              ))
+            ).map((photo: any, index: number) => (
+              <Image className="CarrouselImage" link={photo!.internalId} src={photo!.url}/>
+            ))
+          }
+        </div>
+      </div>
     </Layout>
   );
 }

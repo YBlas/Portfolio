@@ -16,8 +16,6 @@ const StaticPage: NextPage = () => {
         },
     });
 
-    console.log(data);
-
     return (
         <Layout>
             <Header>
